@@ -129,9 +129,9 @@ class RejectWorstMessageCallback(_HFCallbackMixin):
         labels = np.array(df['label'])
         ids = np.array(df['id'])
         predictions = self._invert_predictions_if_higher_is_better(predictions)
-        pred_labels = ss.np.group_apply(predictions, ids, self._label_worst_score)
+        pred_labels = group_apply(predictions, ids, self._label_worst_score)
         values = np.vstack([labels, pred_labels]).T
-        accuracy = ss.np.group_apply(values, ids, lambda x, y: all(x == y), multiarg=True)
+        accuracy = group_apply(values, ids, lambda x, y: all(x == y), multiarg=True)
         nsfw_ix = np.array(df['is_nsfw']).astype(bool)
         new_user_ix = np.array(df['new_user']).astype(bool)
         metrics = {

@@ -2,7 +2,7 @@ from tqdm import tqdm
 import numpy as np
 import wandb
 
-from reward_models.utils import get_timestamp
+from reward_models.utils import get_timestamp, set_temp_seed
 from reward_models.config import WANDB_AUTH_TOKEN
 
 
@@ -78,7 +78,7 @@ def get_reordered_indices(arr, mode, seed):
 
 
 def _random_shuffle_with_seed(arr, seed):
-    with ss.np.set_temp_seed(seed):
+    with set_temp_seed(seed):
         out = np.random.permutation(arr)
     return out
 

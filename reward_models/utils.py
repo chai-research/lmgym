@@ -1,3 +1,4 @@
+import contextlib
 import datetime
 
 import numpy as np
@@ -48,3 +49,13 @@ def invert_argsort(argsort_ix):
 def get_timestamp(time_format='%Y%m%d_%H%M%S'):
     """ Returns a timestamp by checking the date and time at the moment. """
     return str(datetime.datetime.utcnow().strftime(time_format))
+
+
+@contextlib.contextmanager
+def set_temp_seed(seed):
+    state = np.random.get_state()
+    np.random.seed(seed)
+    try:
+        yield
+    finally:
+        np.random.set_state(state)
