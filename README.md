@@ -45,7 +45,7 @@ Inside the folder `reward_models` you may find the following files and folders:
 - `evaluation` folder allows users to configure a best-of-N chatbot which they
   can speak to (by calling the `eval_rewards_api.py` at the root of the
   repository
-### Speaking with trained reward model
+### Speaking with trained reward models
 After completing training, you may wish to manually evaluate your reward model
 against existing reward models.
 - First, create an experiment under `reward_models/evaluation/experiments`, you
