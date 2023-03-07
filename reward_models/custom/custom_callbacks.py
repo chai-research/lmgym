@@ -7,7 +7,7 @@ import datasets
 import numpy as np
 import wandb
 
-import seamless as ss
+from reward_models.utils import group_apply
 from reward_models.config import HF_TOKEN
 
 
@@ -93,11 +93,11 @@ class HumanRankingCallback(_HFCallbackMixin):
         labels = np.array(df['rank (lower is better)'])
         ids = np.array(df['id'])
         predictions = self._invert_predictions_if_higher_is_better(predictions)
-        ranked_prediction = ss.np.group_apply(predictions, ids, self._rank)
+        ranked_prediction = group_apply(predictions, ids, self._rank)
         spearman = spearmanr(ranked_prediction, labels)
         values = np.vstack([ranked_prediction, labels]).T
-        kendall = ss.np.group_apply(values, ids, self._kendalltau, multiarg=True)
-        top_2_acc = ss.np.group_apply(values, ids, self._top_2_acc, multiarg=True)
+        kendall = group_apply(values, ids, self._kendalltau, multiarg=True)
+        top_2_acc = group_apply(values, ids, self._top_2_acc, multiarg=True)
         metrics = {
                 'spearman': spearman.correlation,
                 'kendall_tau': np.mean(kendall),

@@ -2,12 +2,12 @@ from tqdm import tqdm
 import numpy as np
 import wandb
 
-import seamless as ss
+from reward_models.utils import get_timestamp
 from reward_models.config import WANDB_AUTH_TOKEN
 
 
 def init_wandb(project, train_config):
-    name = f'{train_config.EXP_NAME}_{ss.dates.get_timestamp()}'
+    name = f'{train_config.EXP_NAME}_{get_timestamp()}'
     wandb.login(key=WANDB_AUTH_TOKEN)
     wandb.init(project=project, name=name)
 
