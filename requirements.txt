@@ -1,4 +1,4 @@
-datasets==2.10.1
+datasets==2.7.1
 torch==1.13.0
 transformers==4.28.1
 wandb==0.13.5
