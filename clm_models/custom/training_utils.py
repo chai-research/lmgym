@@ -18,11 +18,17 @@ from transformers import (
     HfArgumentParser,
     TrainingArguments,
 )
+from peft import (
+    get_peft_model,
+    LoraConfig,
+    TaskType
+)
 
 from clm_models.custom import tokenization
 from clm_models.custom.model_arguments import (
     ModelArguments,
-    DataTrainingArguments
+    DataTrainingArguments,
+    LoraArguments
 )
 
 logger = logging.getLogger(__name__)
@@ -30,7 +36,7 @@ accuracy_metric = evaluate.load("accuracy")
 
 
 def get_parsed_arguments():
-    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
+    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments, LoraArguments))
     if _console_args_points_to_json():
         args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
     else:
@@ -308,3 +314,17 @@ def _get_block_size(data_args, tokenizer):
 
 def _console_args_points_to_json():
     return len(sys.argv) == 2 and sys.argv[1].endswith(".json")
+
+
+def prepare_lora_model(model, lora_args):
+    logger.info("Preparing LoRa model with PEFT")
+    peft_config = LoraConfig(
+        task_type=TaskType.CAUSAL_LM,
+        inference_mode=False,
+        lora_alpha=lora_args.lora_alpha,
+        lora_dropout=lora_args.lora_dropout,
+        r=lora_args.r,
+        bias=lora_args.bias,
+    )
+    model = get_peft_model(model, peft_config)
+    return model

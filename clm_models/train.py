@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    model_args, data_args, train_args = utils.get_parsed_arguments()
+    model_args, data_args, train_args, lora_args = utils.get_parsed_arguments()
     utils.setup_logging(train_args.get_process_log_level())
     utils.log_training_environment_info(train_args)
 
@@ -29,13 +29,15 @@ def main():
     model_config = utils.get_model_config(model_args)
     model = utils.get_base_model_for_finetuning(model_args, model_config)
     model.resize_token_embeddings(len(tokenizer))
+    if lora_args.use_lora:
+        model = utils.prepare_lora_model(model, lora_args)
 
     tokenized_datasets = utils.get_tokenized_dataset(
-            train_args,
-            data_args,
-            raw_datasets,
-            tokenizer
-            )
+        train_args,
+        data_args,
+        raw_datasets,
+        tokenizer
+    )
     with train_args.main_process_first(desc="grouping texts together"):
         lm_datasets = tokenized_datasets
         print("Example data:", lm_datasets["train"][0])

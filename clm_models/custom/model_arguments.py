@@ -181,3 +181,45 @@ class DataTrainingArguments:
             if self.validation_file is not None:
                 extension = self.validation_file.split(".")[-1]
                 assert extension in ["csv", "json", "txt"], "`validation_file` should be a csv, a json or a txt file."
+
+
+@dataclass
+class LoraArguments:
+    """
+    Arguments pertaining to which LoRa will be used
+    """
+
+    use_lora: Optional[bool] = field(
+        default=False,
+        metadata={
+            "help": (
+                "Whether to use Low-Rank Adaptation training."
+            )
+        },
+    )
+
+    lora_dropout: Optional[float] = field(
+        default=0.05,
+        metadata={"help": "Dropout used my LoRa."},
+    )
+    lora_alpha: Optional[int] = field(
+        default=16,
+        metadata={
+            "help": (
+                "LoRA scaling factor."
+            )
+        },
+    )
+    r: Optional[int] = field(
+        default=8,
+        metadata={
+            "help": "The rank of the update matrices, expressed in int. Lower rank results "
+                    "in smaller update matrices with fewer trainable parameters."
+        }
+    )
+    bias: Optional[str] = field(
+        default="none",
+        metadata={
+            "help": "Bias type for Lora. Can be 'none', 'all' or 'lora_only'"
+        }
+    )
