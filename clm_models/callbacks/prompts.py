@@ -14,7 +14,7 @@ import torch
 import logging
 import wandb
 
-from lmgym.config import RESOURCES_FOLDER
+from config import RESOURCES_FOLDER
 
 logger = logging.getLogger(__name__)
 
