@@ -15,8 +15,8 @@ deepspeed train.py \
   --report_to all \
   --output_dir ./checkpoints/gptj_hh_lora \
   --overwrite_output_dir \
-  --per_device_train_batch_size 4 \
-  --gradient_accumulation_steps 8 \
+  --per_device_train_batch_size 2 \
+  --gradient_accumulation_steps 16 \
   --gradient_checkpointing False \
   --max_eval_samples 500 \
   --num_train_epochs 2 \
