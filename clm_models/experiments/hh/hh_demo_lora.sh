@@ -15,13 +15,14 @@ deepspeed train.py \
   --report_to all \
   --output_dir ./checkpoints/gptj_hh \
   --overwrite_output_dir \
-  --per_device_train_batch_size 4 \
-  --gradient_accumulation_steps 8 \
+  --per_device_train_batch_size 8 \
+  --gradient_accumulation_steps 4 \
   --gradient_checkpointing False \
   --max_eval_samples 500 \
-  --num_train_epochs 4 \
+  --num_train_epochs 2 \
   --eval_first_step False \
   --learning_rate 1e-5 \
+  --lr_scheduler_type "cosine" \
   --fp16 \
   --seed 99 \
   --validation_split_percentage 1 \
@@ -29,4 +30,6 @@ deepspeed train.py \
   --deepspeed ./deepspeed_configs/ds_config_stage_3_offload.json \
   --clean_enabled False \
   --block_size 512 \
-  --use_lora True
+  --use_lora True \
+  --warmup_ratio 0.03 \
+  --weight_decay 0.00001
