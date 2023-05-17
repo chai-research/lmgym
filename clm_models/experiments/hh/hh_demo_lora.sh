@@ -6,17 +6,17 @@ deepspeed train.py \
   --do_train \
   --do_eval \
   --logging_strategy steps \
-  --evaluation_strategy steps \
-  --eval_steps 2100 \
+  --evaluation_strategy epoch \
+  --eval_steps 1 \
   --save_strategy epoch \
   --save_steps 1 \
-  --logging_steps 250 \
+  --logging_steps 100 \
   --logging_first_step \
   --report_to all \
-  --output_dir ./checkpoints/gptj_hh \
+  --output_dir ./checkpoints/gptj_hh_lora \
   --overwrite_output_dir \
-  --per_device_train_batch_size 2 \
-  --gradient_accumulation_steps 16 \
+  --per_device_train_batch_size 4 \
+  --gradient_accumulation_steps 8 \
   --gradient_checkpointing False \
   --max_eval_samples 500 \
   --num_train_epochs 2 \
