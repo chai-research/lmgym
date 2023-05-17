@@ -1,7 +1,7 @@
 {
   "fp16": {
     "enabled": true,
-    "loss_scale": 0,
+    "loss_scale": 32,
     "loss_scale_window": 1000,
     "initial_scale_power": 16,
     "hysteresis": 2,
@@ -25,7 +25,7 @@
     }
   },
   "zero_optimization": {
-    "stage": 2,
+    "stage": 3,
     "overlap_comm": true,
     "contiguous_gradients": true,
     "sub_group_size": 1e9,

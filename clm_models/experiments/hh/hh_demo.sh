@@ -15,8 +15,9 @@ deepspeed train.py \
   --report_to all \
   --output_dir ./checkpoints/gptj_hh \
   --overwrite_output_dir \
-  --per_device_train_batch_size 1 \
-  --gradient_accumulation_steps 4 \
+  --per_device_train_batch_size 4 \
+  --gradient_accumulation_steps 1 \
+  --gradient_checkpointing True \
   --max_eval_samples 500 \
   --num_train_epochs 4 \
   --eval_first_step False \
@@ -25,6 +26,6 @@ deepspeed train.py \
   --seed 99 \
   --validation_split_percentage 1 \
   --remove_unused_columns False \
-  --deepspeed deepspeed_configs/ds_config_soft.json \
+  --deepspeed ./deepspeed_configs/ds_config_stage_3.json \
   --clean_enabled False \
   --block_size 512
