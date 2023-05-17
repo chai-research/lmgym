@@ -17,7 +17,7 @@ deepspeed train.py \
   --overwrite_output_dir \
   --per_device_train_batch_size 2 \
   --gradient_accumulation_steps 16 \
-  --gradient_checkpointing True \
+  --gradient_checkpointing False \
   --max_eval_samples 500 \
   --num_train_epochs 2 \
   --eval_first_step False \
