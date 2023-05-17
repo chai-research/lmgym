@@ -17,16 +17,16 @@ deepspeed train.py \
   --overwrite_output_dir \
   --per_device_train_batch_size 4 \
   --gradient_accumulation_steps 8 \
-  --gradient_checkpointing True \
+  --gradient_checkpointing False \
   --max_eval_samples 500 \
   --num_train_epochs 4 \
   --eval_first_step False \
-  --learning_rate 4e-6 \
+  --learning_rate 1e-5 \
   --fp16 \
   --seed 99 \
   --validation_split_percentage 1 \
   --remove_unused_columns False \
-  --deepspeed ./deepspeed_configs/ds_config_stage_3.json \
+  --deepspeed ./deepspeed_configs/ds_config_stage_3_offload.json \
   --clean_enabled False \
   --block_size 512 \
   --use_lora True
