@@ -1,6 +1,6 @@
 deepspeed train.py \
-  --model_name_or_path gpt2 \
-  --tokenizer_name gpt2 \
+  --model_name_or_path EleutherAI/gpt-j-6b \
+  --tokenizer_name EleutherAI/gpt-j-6b \
   --dataset_name AlekseyKorshuk/hh-lmgym-demo \
   --train_to_probs False \
   --do_train \
@@ -34,4 +34,5 @@ deepspeed train.py \
   --weight_decay 0.00001 \
   --max_train_samples 64 \
   --push_to_hub True \
-  --hub_model_id "AlekseyKorshuk/lora-save-test"
+  --hub_model_id "AlekseyKorshuk/lora-save-test-6b" \
+  --hub_strategy end

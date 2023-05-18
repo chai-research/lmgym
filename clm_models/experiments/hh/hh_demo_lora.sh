@@ -32,4 +32,7 @@ deepspeed train.py \
   --block_size 512 \
   --use_lora True \
   --warmup_ratio 0.03 \
-  --weight_decay 0.00001
+  --weight_decay 0.00001 \
+  --push_to_hub True \
+  --hub_model_id "AlekseyKorshuk/hh-lmgym-demo-lora" \
+  --hub_strategy end
