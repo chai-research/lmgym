@@ -100,7 +100,7 @@ def main():
         trainer.push_to_hub(**cards_config)
     else:
         trainer.create_model_card(**cards_config)
-
+    import pdb; pdb.set_trace()
 
 if __name__ == "__main__":
     main()
