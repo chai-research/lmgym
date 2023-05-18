@@ -328,3 +328,9 @@ def prepare_lora_model(model, lora_args):
     )
     model = get_peft_model(model, peft_config)
     return model
+
+
+def save_lora_adapter(model, train_args):
+    model.save_pretrained(os.path.join(train_args.output_dir, "final-adapter"))
+    if train_args.push_to_hub:
+        model.push_to_hub(model.hub_model_id)

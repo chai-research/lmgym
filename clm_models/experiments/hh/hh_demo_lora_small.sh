@@ -1,6 +1,6 @@
 deepspeed train.py \
-  --model_name_or_path EleutherAI/gpt-j-6b \
-  --tokenizer_name EleutherAI/gpt-j-6b \
+  --model_name_or_path gpt2 \
+  --tokenizer_name gpt2 \
   --dataset_name AlekseyKorshuk/hh-lmgym-demo \
   --train_to_probs False \
   --do_train \
@@ -17,7 +17,7 @@ deepspeed train.py \
   --per_device_train_batch_size 2 \
   --gradient_accumulation_steps 16 \
   --gradient_checkpointing False \
-  --max_eval_samples 500 \
+  --max_eval_samples 64 \
   --num_train_epochs 1 \
   --eval_first_step False \
   --learning_rate 1e-5 \

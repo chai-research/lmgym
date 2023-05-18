@@ -95,12 +95,15 @@ def main():
         trainer.save_metrics("eval", metrics)
         trainer.log(metrics)
 
-    cards_config = utils.get_huggingface_cards_config(model_args, data_args)
-    if train_args.push_to_hub:
-        trainer.push_to_hub(**cards_config)
+    if lora_args.use_lora:
+        utils.save_lora_adapter(trainer.model, train_args)
     else:
-        trainer.create_model_card(**cards_config)
-    import pdb; pdb.set_trace()
+        cards_config = utils.get_huggingface_cards_config(model_args, data_args)
+        if train_args.push_to_hub:
+            trainer.push_to_hub(**cards_config)
+        else:
+            trainer.create_model_card(**cards_config)
+
 
 if __name__ == "__main__":
     main()
