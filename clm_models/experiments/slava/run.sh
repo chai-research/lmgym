@@ -1,0 +1,38 @@
+deepspeed train.py \
+  --model_name_or_path PygmalionAI/pygmalion-6b \
+  --model_revision dev \
+  --tokenizer_name PygmalionAI/pygmalion-6b \
+  --dataset_name AlekseyKorshuk/slava_guanako_v1 \
+  --train_to_probs False \
+  --do_train \
+  --do_eval \
+  --logging_strategy steps \
+  --evaluation_strategy epoch \
+  --eval_steps 1 \
+  --save_strategy epoch \
+  --save_steps 1 \
+  --logging_steps 100 \
+  --logging_first_step \
+  --report_to all \
+  --output_dir ./checkpoints/slava_guanako_v1 \
+  --overwrite_output_dir \
+  --per_device_train_batch_size 4 \
+  --gradient_accumulation_steps 2 \
+  --gradient_checkpointing False \
+  --max_eval_samples 500 \
+  --num_train_epochs 1 \
+  --eval_first_step False \
+  --learning_rate 1e-6 \
+  --lr_scheduler_type "cosine" \
+  --fp16 \
+  --seed 99 \
+  --validation_split_percentage 1 \
+  --remove_unused_columns False \
+  --deepspeed ./deepspeed_configs/ds_config_stage_2_offload.json \
+  --clean_enabled False \
+  --block_size 512 \
+  --warmup_ratio 0.03 \
+  --weight_decay 0.00001 \
+  --push_to_hub True \
+  --hub_model_id "AlekseyKorshuk/slava-guanaco-v1" \
+  --hub_strategy end
