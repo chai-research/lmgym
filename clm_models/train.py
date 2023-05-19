@@ -5,6 +5,9 @@ from transformers.utils import check_min_version
 from transformers.utils.versions import require_version
 import torch
 
+import sys
+sys.path.append("..")
+
 from clm_models.callbacks.callbacks import get_callbacks
 from clm_models.custom import losses as custom_loss
 from clm_models.custom import training_utils as utils
