@@ -28,7 +28,7 @@ deepspeed train.py \
   --seed 99 \
   --validation_split_percentage 1 \
   --remove_unused_columns False \
-  --deepspeed ./deepspeed_configs/ds_config_stage_2_offload.json \
+  --deepspeed ./deepspeed_configs/ds_config_stage_3.json \
   --clean_enabled False \
   --block_size 512 \
   --warmup_ratio 0.03 \
