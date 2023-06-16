@@ -7,23 +7,6 @@
     "hysteresis": 2,
     "min_loss_scale": 1
   },
-  "optimizer": {
-    "type": "AdamW",
-    "params": {
-      "lr": "auto",
-      "betas": "auto",
-      "eps": "auto",
-      "weight_decay": "auto"
-    }
-  },
-  "scheduler": {
-    "type": "WarmupLR",
-    "params": {
-      "warmup_min_lr": "auto",
-      "warmup_max_lr": "auto",
-      "warmup_num_steps": "auto"
-    }
-  },
   "zero_optimization": {
     "stage": 2,
     "overlap_comm": true,

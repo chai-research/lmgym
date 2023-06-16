@@ -89,7 +89,7 @@ def get_raw_dataset(data_args, model_args):
         cache_dir=model_args.cache_dir,
         use_auth_token=True,
     )
-    if "validation" not in raw_datasets.keys():
+    if "validation" not in raw_datasets.keys() and data_args.validation_split_percentage > 0:
         raw_datasets["validation"] = load_dataset(
             data_args.dataset_name,
             data_args.dataset_config_name,
