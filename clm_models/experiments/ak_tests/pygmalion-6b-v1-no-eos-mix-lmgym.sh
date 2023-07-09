@@ -1,4 +1,4 @@
-deepspeed train_gptj.py \
+deepspeed train.py \
   --model_name_or_path PygmalionAI/pygmalion-6b \
   --tokenizer_name AlekseyKorshuk/pygmalion-6b \
   --dataset_name AlekseyKorshuk/chai-experiment-v1-no-eos-mix-lmgym \
@@ -12,7 +12,7 @@ deepspeed train_gptj.py \
   --logging_steps 10 \
   --logging_first_step \
   --report_to all \
-  --output_dir /models/checkpoints/pygmalion-6b-v1-no-eos-mix-lmgym \
+  --output_dir ./checkpoints/pygmalion-6b-v1-no-eos-mix-lmgym \
   --overwrite_output_dir \
   --per_device_train_batch_size 4 \
   --gradient_accumulation_steps 1 \

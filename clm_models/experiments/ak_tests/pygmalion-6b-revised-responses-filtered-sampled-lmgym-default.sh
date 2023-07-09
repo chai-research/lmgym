@@ -1,7 +1,7 @@
 deepspeed train.py \
   --model_name_or_path PygmalionAI/pygmalion-6b \
   --tokenizer_name AlekseyKorshuk/pygmalion-6b \
-  --dataset_name AlekseyKorshuk/chai-experiment-v1-eos-mix-lmgym \
+  --dataset_name AlekseyKorshuk/revised-responses-filtered-sampled-lmgym \
   --train_to_probs False \
   --do_train \
   --logging_strategy steps \
@@ -12,7 +12,7 @@ deepspeed train.py \
   --logging_steps 10 \
   --logging_first_step \
   --report_to all \
-  --output_dir ./checkpoints/pygmalion-6b-v1-eos-mix-lmgym \
+  --output_dir ./checkpoints/pygmalion-6b-revised-responses-filtered-sampled-lmgym-default \
   --overwrite_output_dir \
   --per_device_train_batch_size 4 \
   --gradient_accumulation_steps 1 \
