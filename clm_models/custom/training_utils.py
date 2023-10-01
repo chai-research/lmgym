@@ -147,6 +147,8 @@ def get_tokenizer(model_args):
         )
     if "gpt" in tokenizer.name_or_path.lower():
         tokenizer.pad_token = 50256
+    else:
+        tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
 
 
